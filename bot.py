@@ -5,13 +5,6 @@ import requests
 
 client = discord.Client()  # init connection to discord
 
-
-# now = datetime.now() #get current datetime
-# nowNice = dt_string = now.strftime("[%d/%m/%Y %H:%M:%S]") #make it look nice for prepending
-# nowEmbed = dt_string = now.strftime("%d/%m/%Y %H:%M") #nice datetime for embed
-# tomorrow = now + timedelta(hours=24)
-# tomorrowEmbed = dt_string = tomorrow.strftime("%d/%m/%Y %H:%M")
-
 def getTime():
     now = datetime.now()  # get current datetime
     nowNice = dt_string = now.strftime("[%d/%m/%Y %H:%M:%S]")  # make it look nice for prepending
@@ -41,7 +34,7 @@ async def on_message(message):
             'Watch2gether bot is currently running and accepting commands. Please contact tomba#4032 if you are '
             'having issues.')
         await message.channel.send(
-            'Serving ' + str(len(client.users)) + ' users across ' + str(len(client.guilds)) + ' servers!')
+            'Serving ' + str(len(client.guilds)) + ' servers!')
         now, nowNice, nowEmbed, tomorrow, tomorrowEmbed = getTime()
         print(nowNice, message.author, ' requested bot status on ', message.guild.name)  # log to console
         return
@@ -77,7 +70,8 @@ async def on_message(message):
         print(nowNice, 'Generated URL for ', message.author, 'in guild: ', message.guild.name, '(',
               response.url, ')')  # log to console
         messageAuthor = str(message.author)  # shouldn't be needed but works
-        descriptionText = messageAuthor + ' has created a Watch2Gether room. Click the link to join!'  # using + here instead of , due to strange issues
+        descriptionText = messageAuthor + ' has created a Watch2Gether room. Click the link to join!'
+        # using + here instead of , due to strange issues
         roomURL = str(response.url)  # because why not
         embedVar = discord.Embed(title="Watch2Gether Room is Ready!", description=descriptionText,
                                  color=0x00ff00)  # create embed
@@ -88,4 +82,4 @@ async def on_message(message):
         await message.channel.send(embed=embedVar)  # send embed
 
 
-client.run('xxxxxxxxxxxxxxxxxx')  # run bot with this login token
+client.run('xxxxx')  # run bot with this login token
